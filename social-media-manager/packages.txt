@@ -1,2 +1,0 @@
-pandoc
-libgl1-mesa-glx
