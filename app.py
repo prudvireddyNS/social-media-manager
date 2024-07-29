@@ -89,21 +89,21 @@ def linkedin(blog_content, image_path, token):
 
 def Main(topic, website_url, token, email):
 
-    company_summary = info(website_url)
-    print(company_summary)
+    # company_summary = info(website_url)
+    # print(company_summary)
 
-    blog_content, md_file_path, docx_file_path, img_path = blog(topic, company_summary)
-    print(blog_content)
-    print(md_file_path)
-    print(docx_file_path)
-    print(img_path)
+    # blog_content, md_file_path, docx_file_path, img_path = blog(topic, company_summary)
+    # print(blog_content)
+    # print(md_file_path)
+    # print(docx_file_path)
+    # print(img_path)
 
-    video_path = video(topic, company_summary)
-    print(video_path)
+    # video_path = video(topic, company_summary)
+    # print(video_path)
 
-    if token is not None:
-        linkedin_confirmation = linkedin(blog_content, img_path, token)
-        print(linkedin_confirmation)
+    # if token is not None:
+    #     linkedin_confirmation = linkedin(blog_content, img_path, token)
+    #     print(linkedin_confirmation)
 
     send_email_with_company_details(email, 'DIGIOTAI SOLUTIONS', title) 
 
