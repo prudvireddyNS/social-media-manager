@@ -8,6 +8,64 @@ from tools import generate_images_and_add_to_blog, generate_video
 load_dotenv()
 
 
+import json
+import os
+from pprint import pprint
+
+private_key_id = os.getenv('PRIVATE_KEY_ID')
+private_key = os.getenv('PRIVATE_KEY')
+client_email = os.getenv('CLIENT_EMAIL')
+client_id = os.getenv('CLIENT_ID')
+auth_uri = os.getenv('AUTH_URI')
+token_uri = os.getenv('TOKEN_URI')
+auth_provider_x509_cert_url = os.getenv('AUTH_PROVIDER_X509_CERT_URL')
+client_x509_cert_url = os.getenv('CLIENT_X509_CERT_URL')
+universe_domain =  os.getenv("universe_domain")
+
+service_account_info = {
+    "type": "service_account",
+    "project_id": os.getenv('PROJECT_ID'),
+    "private_key_id": private_key_id,
+    "private_key": private_key,
+    "client_email": client_email,
+    "client_id": client_id,
+    "auth_uri": auth_uri,
+    "token_uri": token_uri,
+    "auth_provider_x509_cert_url": auth_provider_x509_cert_url,
+    "client_x509_cert_url": client_x509_cert_url,
+    "universe_domain": universe_domain
+}
+pprint(service_account_info)
+
+with open('service_account.json', 'w') as f:
+    json.dump(service_account_info, f, indent=2)
+
+token = os.getenv('token')
+refresh_token = os.getenv('refresh_token')
+token_uri = os.getenv('token_uri')
+client_id_mail = os.getenv('client_id_mail')
+client_secret = os.getenv('client_secret')
+scopes = os.getenv('scopes')
+universe_domain = os.getenv('universe_domain')
+account = os.getenv('account')
+expiry = os.getenv('expiry')
+
+token_info = {
+    "token": token,
+    "refresh_token": refresh_token,
+    "token_uri": token_uri,
+    "client_id": client_id_mail,
+    "client_secret": client_secret,
+    "scopes": ["https://www.googleapis.com/auth/gmail.send"],
+    "universe_domain": universe_domain,
+    "account": account,
+    "expiry": expiry
+}
+pprint(token_info)
+
+with open('token.json', 'w') as f:
+    json.dump(token_info, f)
+
 info_crew, blog_crew, video_crew, linkedin_crew = get_crews()
 
 def info(website_url):
