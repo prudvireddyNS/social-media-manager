@@ -101,9 +101,9 @@ def Main(topic, website_url, token, email):
     video_path = video(topic, company_summary)
     print(video_path)
 
-    # if token is not None:
-    #     linkedin_confirmation = linkedin(blog_content, img_path, token)
-    #     print(linkedin_confirmation)
+    if token is not None:
+        linkedin_confirmation = linkedin(blog_content, img_path, token)
+        print(linkedin_confirmation)
 
     send_email_with_company_details(email, 'DIGIOTAI SOLUTIONS', title) 
 
