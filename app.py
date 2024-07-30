@@ -24,7 +24,7 @@ universe_domain =  os.getenv("universe_domain")
 
 service_account_info = {
     "type": "service_account",
-    "project_id": os.getenv('PROJECT_ID'),
+    "project_id": os.getenv('project_id'),
     "private_key_id": private_key_id,
     "private_key": private_key,
     "client_email": client_email,
