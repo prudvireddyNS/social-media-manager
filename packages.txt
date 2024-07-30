@@ -1,3 +1,5 @@
 pandoc
 libgl1-mesa-glx
 ffmpeg
+libgtk2.0-dev
+pkg-config
