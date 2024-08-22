@@ -253,6 +253,7 @@ class TwitterAgent:
         prompt = (
             "Create a short tweet of 200 characters based on the following topic and summary. The tweet should be concise, engaging, and suitable for a Twitter audience. "
             "It should introduce the topic, provide a brief summary, and include a call-to-action if relevant. "
+            "Do not include company website url in the tweet. "
             f"Topic: {self.topic}\n"
             f"Company's website: {self.url}\n"
             f"Summarized content:\n{self.summary}\n\n"
