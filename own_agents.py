@@ -177,14 +177,15 @@ class VideoAgent:
     def generate_script(self):
         prompt = (
             "Generate a video script with two narration and image prompt pairs for the following topic, focusing on the company's expertise related to the topic. "
-            "The script should contain around 200 words total. Start by explaining the topic and then highlight the company's role or expertise in relation to it. "
+            "Focus on the topic and start the narration by explaining the topic first. "
+            "The script should contain around 200 words total. "
             "Ensure that the image prompts do not include any text, names, logos, or other identifying features. "
             "Provide a descriptive image prompt that clearly defines elements, colors, and subjects. For instance, 'The sky was a crisp blue with green hues' is more descriptive than just 'blue sky'."
             f"\n\n**Topic:** \n{self.topic}\n\n"
             f"**Summary:** \n{self.summary}\n\n"
             "Expected Output: Two pairs of sentences. Enclose narration in <narration> narration here </narration> tags and image prompts in <image> image prompt here </image> tags."
         )
-
+        #"The script should contain around 200 words total. Start by explaining the topic and then highlight the company's role or expertise in relation to it. "
         script = self.llm.invoke(prompt).content.strip()
         return script
     

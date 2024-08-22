@@ -679,7 +679,7 @@ def create_video_from_images_and_audio(images_dir, speeches_dir, final_video_fil
         temp_files.append(temp_video_path)
         
         caption = all_captions[i]
-        final_video_path = add_text_to_video(temp_video_path, caption, duration=1, fontsize=20)
+        final_video_path = add_text_to_video(temp_video_path, caption, duration=1, fontsize=60)
         temp_files.append(final_video_path)
         
         final_clip = VideoFileClip(final_video_path)
