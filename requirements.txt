@@ -1,9 +1,8 @@
 pysqlite3-binary
-embedchain
-crewai==0.36.1
-crewai-tools
+langchain
 langchain-openai
 langchain-groq
+langchain_community
 streamlit
 gtts
 pydub
