@@ -251,7 +251,7 @@ class TwitterAgent:
 
     def generate_tweet(self):
         prompt = (
-            "Create a tweet of 200 characters based on the following topic and summary. The tweet should be concise, engaging, and suitable for a Twitter audience. "
+            "Create a short tweet of 200 characters based on the following topic and summary. The tweet should be concise, engaging, and suitable for a Twitter audience. "
             "It should introduce the topic, provide a brief summary, and include a call-to-action if relevant. "
             f"Topic: {self.topic}\n"
             f"Company's website: {self.url}\n"
