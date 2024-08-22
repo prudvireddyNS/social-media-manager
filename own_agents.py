@@ -264,6 +264,7 @@ class TwitterAgent:
 
     def post_on_twitter(self, consumer_key, consumer_secret, access_token, access_token_secret):
         tweet = self.generate_tweet()
+        print(len(tweet))
         akg = twitter_tweet(tweet, consumer_key, consumer_secret, access_token, access_token_secret)
         return akg
 
