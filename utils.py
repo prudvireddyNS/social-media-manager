@@ -211,8 +211,8 @@ def get_urn(token):
         print(f'Failed to fetch user info: {response.status_code}')
         print(response.text)
 
-@tool
-def post_image_and_text(token, title, image_path, text_content):
+# @tool
+def post_image_and_text(token, title, text_content, image_path):
     """
     Posts an article on LinkedIn with an image.
 
