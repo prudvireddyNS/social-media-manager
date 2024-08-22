@@ -22,7 +22,7 @@ import re
 from bs4 import BeautifulSoup
 import shutil
 import urllib
-import markdown
+# import markdown
 
 
 def twitter_tweet(tweet, consumer_key, consumer_secret, access_token, access_token_secret):
