@@ -256,7 +256,7 @@ class TwitterAgent:
             f"Topic: {self.topic}\n"
             f"Company's website: {self.url}\n"
             f"Summarized content:\n{self.summary}\n\n"
-            "Expected Output: A well-crafted tweet (within 350 characters)."
+            "Expected Output: A well-crafted tweet (strictly within 240 characters)."
         )
         
         tweet_text = self.llm.invoke(prompt).content.strip()
