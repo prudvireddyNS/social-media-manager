@@ -60,9 +60,9 @@ with open('token.json', 'w') as f:
 import streamlit as st
 from own_agents import ResearchAgent, BlogAgent, VideoAgent, LinkedinAgent, TwitterAgent, EmailAgent
 from langchain_openai import ChatOpenAI
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 blog_status = None
 video_status = None
