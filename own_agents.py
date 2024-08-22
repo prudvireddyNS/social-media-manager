@@ -252,11 +252,12 @@ class TwitterAgent:
     def generate_tweet(self):
         prompt = (
             "Create a tweet based on the following topic and summary. The tweet should be concise, engaging, and suitable for a Twitter audience. "
-            "It should introduce the topic, provide a brief summary, and include a call-to-action if relevant. The tweet should be within 220 characters."
+            "It should introduce the topic, provide a brief summary, and include a call-to-action if relevant. "
+            "The characters in the tweet are limited to 220. "
             f"Topic: {self.topic}\n"
             f"Company's website: {self.url}\n"
             f"Summarized content:\n{self.summary}\n\n"
-            "Expected Output: A well-crafted tweet (strictly within 250 characters)."
+            "Expected Output: A well-crafted tweet. "#(strictly within 250 characters)."
         )
         
         tweet_text = self.llm.invoke(prompt).content.strip()
