@@ -178,7 +178,7 @@ class VideoAgent:
         prompt = (
             "Generate a video script with two narration and image prompt pairs for the following topic, focusing on the company's expertise related to the topic. "
             "Focus on the topic and start the narration by explaining the topic first. "
-            "The script should contain around 200 words total. "
+            "The script should contain around 150 words total. "
             "Ensure that the image prompts do not include any text, names, logos, or other identifying features. "
             "Provide a descriptive image prompt that clearly defines elements, colors, and subjects. For instance, 'The sky was a crisp blue with green hues' is more descriptive than just 'blue sky'."
             f"\n\n**Topic:** \n{self.topic}\n\n"
