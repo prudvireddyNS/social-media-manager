@@ -3,7 +3,6 @@ from google.oauth2 import service_account
 from googleapiclient.http import MediaFileUpload
 import base64
 import os
-import streamlit as st
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -13,6 +12,30 @@ import requests
 import json
 from langchain.tools import tool
 import tempfile
+
+import tweepy
+import requests
+from PIL import Image
+import logging
+import random
+import re
+from bs4 import BeautifulSoup
+import shutil
+import urllib
+import markdown
+
+
+def twitter_tweet(tweet, consumer_key, consumer_secret, access_token, access_token_secret):
+
+    try:
+        client = tweepy.Client(consumer_key=consumer_key, consumer_secret=consumer_secret, 
+                        access_token=access_token, access_token_secret=access_token_secret)
+    
+        tweet = tweet.strip('"')
+        res = client.create_tweet(text=tweet)
+        return 'Twitter tweet generated and posted to user twitter account successfully'
+    except Exception as e:
+        return Exception(f"Failed to tweet: {e}")
 
 # Constants
 SCOPES_DRIVE = ['https://www.googleapis.com/auth/drive']

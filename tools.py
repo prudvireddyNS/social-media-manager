@@ -1,6 +1,6 @@
 from langchain.tools import tool
-from crewai_tools import ScrapeWebsiteTool
-from gtts import gTTS
+# from crewai_tools import ScrapeWebsiteTool
+# from gtts import gTTS
 from pydub import AudioSegment
 from groq import Groq
 from PIL import Image, ImageDraw, ImageFont
@@ -20,6 +20,113 @@ from pathlib import Path
 from openai import OpenAI
 
 # !sudo apt-get install pandoc
+
+####################################################################################################33
+from bs4 import BeautifulSoup
+from langchain_community.document_loaders import YoutubeLoader
+
+def extract_sections(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    sections = []
+    for link in soup.find_all('a', href=True):
+        sections.append({
+            'text': link.get_text().strip(),
+            'url': link['href']
+        })
+        
+    return sections
+
+def filter_relevant_sections(sections, keywords):
+    relevant_sections = []
+    for section in sections:
+        if any(keyword.lower() in section['text'].lower() for keyword in keywords):
+            relevant_sections.append(section)
+    
+    return relevant_sections
+
+def filter_youtube_links(sections, keywords):
+    youtube_sections = []
+    for section in sections:
+        if 'youtube' not in section['url']:
+            sections.remove()
+
+def gather_info_from_sections(relevant_sections):
+    content = {}
+    for section in relevant_sections:
+        try:
+            response = requests.get(section['url'])
+            soup = BeautifulSoup(response.content, 'html.parser')
+            clean_text = clean_scraped_text(soup.get_text())
+            content[section['url']] = clean_text
+        except Exception as e:
+            print(e)
+    
+    return content
+
+def clean_scraped_text(text):
+    text = re.sub(r'\n+', '\n', text)
+    text = re.sub(r'\s+', ' ', text)
+
+    patterns = [
+        r'Home\s+About Us.*?\s+Contact Us',
+        r'This website uses cookies.*?Privacy & Cookies Policy',  
+        r'Copyright.*?Powered by.*',  
+    ]
+
+    for pattern in patterns:
+        text = re.sub(pattern, '', text, flags=re.DOTALL | re.IGNORECASE)
+
+    text = re.sub(r'\|.*?\|', '', text)  
+    text = text.strip()  
+
+    return text
+
+def youtube_transcript_loader(url):
+    try:
+        loader = YoutubeLoader.from_youtube_url(
+            url, add_video_info=False
+        )
+        transcript = loader.load()[0]
+        return transcript.page_content
+    except Exception as e:
+        print(e)
+    
+def gather_youtube_data(sections, keywords):
+    youtube_sections = []
+    for i, section in enumerate(sections):
+        if 'youtube' in section['url']:
+            youtube_sections.append(section)
+
+    content = {}
+    for section in youtube_sections:
+        text = youtube_transcript_loader(section['url'])
+        if text is not None:
+            content[section['url']] = text
+
+    relevant_content = {}
+    for k, v in content.items():
+        if any(keyword.lower() in v.lower() for keyword in keywords):
+            relevant_content[k] = v
+
+    return relevant_content
+
+def extract_relevant_sections_from_website(website_url, keywords):
+    sections = extract_sections(website_url)
+    filtered_sections = filter_relevant_sections(sections, keywords)
+    gathered_info = gather_info_from_sections(filtered_sections)
+    youtube_info = gather_youtube_data(sections, keywords)
+    total_info = gathered_info | youtube_info
+    refined_info = {url: text for url, text in total_info.items() if len(text) > 200}  # Example threshold for content length
+
+    return refined_info
+
+# context = extract_relevant_sections_from_website(website_url = "https://www.digiotai.com/", keywords =  ["Future of AI", "AI", "artificial intelligence", "AI technology", "generative AI"])
+
+
+
+##########################################################################################################333#
 
 
 @tool
