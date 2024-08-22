@@ -256,16 +256,31 @@ class TwitterAgent:
             f"Topic: {self.topic}\n"
             f"Company's website: {self.url}\n"
             f"Summarized content:\n{self.summary}\n\n"
-            "Expected Output: A well-crafted tweet (strictly within 240 characters)."
+            "Expected Output: A well-crafted tweet (strictly within 250 characters)."
         )
         
         tweet_text = self.llm.invoke(prompt).content.strip()
         return tweet_text
+    
+    def twitter_tweet(self, tweet, consumer_key, consumer_secret, access_token, access_token_secret):
+
+        try:
+            import tweepy
+            print(tweet, consumer_key, consumer_secret, access_token, access_token_secret)
+            client = tweepy.Client(consumer_key=consumer_key, consumer_secret=consumer_secret, 
+                            access_token=access_token, access_token_secret=access_token_secret)
+        
+            tweet = tweet.strip('"')
+            res = client.create_tweet(text=tweet)
+            print(res)
+            return 'Twitter tweet generated and posted to user twitter account successfully'
+        except Exception as e:
+            return Exception(f"Failed to tweet: {e}")
 
     def post_on_twitter(self, consumer_key, consumer_secret, access_token, access_token_secret):
         tweet = self.generate_tweet()
         print(len(tweet))
-        akg = twitter_tweet(tweet, consumer_key, consumer_secret, access_token, access_token_secret)
+        akg = self.twitter_tweet(tweet, consumer_key, consumer_secret, access_token, access_token_secret)
         return akg
 
 class EmailAgent:
