@@ -283,7 +283,7 @@ def generate_image_openai(text, num):
 
     try:
         response = client.images.generate(
-            model="dall-e-2",
+            model="dall-e-3",
             prompt=text,
             size="512x512",
             quality="standard",
@@ -491,7 +491,7 @@ def image_generator(script):
     for i, text in enumerate(dict['text_for_image_generation']):
         try:
             response = client.images.generate(
-                model="dall-e-2",
+                model="dall-e-3",
                 prompt=text,
                 size="512x512",
                 quality="standard",

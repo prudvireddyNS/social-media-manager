@@ -130,7 +130,11 @@ if st.button("Generate"):
                 with st.spinner("Creating Twitter Tweet..."):
                     with st.expander("Twitter Tweet"):
                         twitter_agent = TwitterAgent(llm, topic, url, summarized_content)
-                        twitter_status = twitter_agent.post_on_twitter(twitter_consumer_key, twitter_consumer_secret, twitter_access_token, twitter_access_token_secret)
+                        # twitter_status = twitter_agent.post_on_twitter(twitter_consumer_key, twitter_consumer_secret, twitter_access_token, twitter_access_token_secret)
+                        a = twitter_agent.generate_tweet()
+                        st.write(len(a))
+                        from utils import twitter_tweet
+                        twitter_status = twitter_tweet(a, twitter_consumer_key, twitter_consumer_secret, twitter_access_token, twitter_access_token_secret)
                         st.write(twitter_status)
             
             email_agent = EmailAgent(llm, to_mail)
