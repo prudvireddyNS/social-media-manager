@@ -581,7 +581,7 @@ def add_text_to_video(input_video, text, duration=1, fontsize=40, fontcolor=(255
             text_bbox = draw.textbbox((0, 0), chunk, font=font)
             text_width, text_height = text_bbox[2] - text_bbox[0], text_bbox[3] - text_bbox[1]
             text_x = (width - text_width) // 2
-            text_y = height - 100  # Position text at the bottom
+            text_y = height - 200  # Position text at the bottom
 
             if text_width > width:
                 words = chunk.split()
