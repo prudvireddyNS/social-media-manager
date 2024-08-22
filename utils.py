@@ -140,6 +140,37 @@ def send_email_with_company_details(user_email, company_name, topic):
     except Exception as e:
         print(f'Error sending email: {str(e)}')
 
+def send_email(to_email, subject, body):
+    """Tool to send email"""
+    try:
+        # Create message container - the correct MIME type is multipart/alternative.
+        msg = MIMEMultipart('alternative')
+        msg['to'] = to_email
+        msg['subject'] = subject
+
+        # Attach parts into message container
+        # part1 = MIMEText(email_body, 'plain')
+        part2 = MIMEText(body, 'html')
+        # msg.attach(part1)
+        msg.attach(part2)
+
+        raw_string = base64.urlsafe_b64encode(msg.as_bytes()).decode()
+
+        service = authenticate_gmail()
+        sent_message = service.users().messages().send(userId='me', body={'raw': raw_string}).execute()
+
+        # # Connect to the SMTP server
+        # server = smtplib.SMTP('smtp.gmail.com', 587)
+        # server.starttls()  # Secure the connection
+        # server.login(SENDER_EMAIL, PASSWORD)
+        # server.sendmail(SENDER_EMAIL, user_email, msg.as_string())
+        print(sent_message)
+        print('Email sent successfully!')
+        return 'Email sent successfully!'
+    except Exception as e:
+        print(f'Error sending email: {str(e)}')
+        return f'Error sending email: {str(e)}'
+
 # Upload blog post and video, then share them and send an email
 # def main():
 #     blog_filepath = 'blog_post.docx'
