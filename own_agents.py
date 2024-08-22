@@ -196,7 +196,7 @@ class VideoAgent:
     
     def create_video(self):
         script = self.generate_script()
-        video_path = generate_video(script, self.topic, True)
+        video_path = generate_video(script, self.topic)
         akg = self.upload_to_drive(video_path)
         return akg
     
