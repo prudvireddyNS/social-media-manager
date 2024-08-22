@@ -279,7 +279,7 @@ class EmailAgent:
                 <body style="font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 20px;">
                     <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                         <div style="text-align: center; padding-bottom: 20px; border-bottom: 1px solid #eeeeee;">
-                            <h1 style="color: #333333; margin: 0;">Content Update</h1>
+                            <h1 style="color: #333333; margin: 0;">Social Media Manager</h1>
                         </div>
                         <div style="padding: 20px;">
                             <p style="font-size: 16px; color: #333333;">Hello {name},</p>
