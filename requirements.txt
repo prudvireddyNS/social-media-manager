@@ -7,7 +7,7 @@ streamlit
 gtts
 pydub
 groq
-Pillow
+Pillow==9.5.0
 sendgrid
 moviepy
 requests
